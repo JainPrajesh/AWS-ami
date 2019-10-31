@@ -45,4 +45,6 @@ jobs:
           command: |
             ./packer build \
             -var "aws_region=${AWS_REGION}" \
-            centos-ami-template.json
+            -var "aws_access_key_id=${AWS_ACCESS_KEY_ID}" \
+            -var "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" \
+             ami-template.json
