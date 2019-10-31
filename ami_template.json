@@ -13,8 +13,7 @@
     "ssh_username": "centos",
     "ami_name": "Masterchef AMI {{timestamp}}"
   }],
-  "provisioners": [
-    {
+  "provisioners": [{
       "type": "shell",
       "inline": [
         "sleep 30",
@@ -24,11 +23,6 @@
         "mkdir /home/centos/node-app",
         "chown centos:centos /home/centos/node-app"
       ]
-    },
-    {
-      "type": "file",
-      "source": "../../ccwebapp",
-      "destination": "/tmp"
     },
     {
       "type": "shell",
