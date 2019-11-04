@@ -35,14 +35,7 @@
         "curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -",
         "sudo yum install -y nodejs",
         "sudo yum install wget -y",
-        "sudo yum install ruby -y",
-        "cd /home/centos",
-        "wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install",
-        "chmod +x ./install",
-        "wget https://s3.amazonaws.com/amazoncloudwatch-agent/centos/amd64/latest/amazon-cloudwatch-agent.rpm",
-        "sudo rpm -U ./amazon-cloudwatch-agent.rpm",
-        "mkdir /home/centos/node-app",
-        "chown centos:centos /home/centos/node-app"
+        "sudo yum install ruby -y"
       ]
     }
 
