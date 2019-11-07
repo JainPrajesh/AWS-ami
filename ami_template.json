@@ -1,42 +1,41 @@
 {
   "variables": {
     "aws_access_key": "",
-    "aws_secret_key": ""
+    "aws_secret_key": "",
+    "aws_region": "",
+    "subnet_id": "",
+    "source_ami": "ami-9887c6e7",
+    "ssh_username": "centos"
   },
   "builders": [{
     "type": "amazon-ebs",
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
-    "region": "us-east-1",
-    "source_ami": "ami-9887c6e7",
+    "region": "{{user `aws_region`}}",
+    "source_ami": "{{user `source_ami`}}",
     "instance_type": "t2.micro",
     "ssh_username": "centos",
-    "ami_name": "Masterchef AMI {{timestamp}}"
+    "ami_name": "csye6225_{{timestamp}}",
+    "ami_description": "CentOS AMI",
+    "tags": {
+      "Name": "centOS_{{timestamp}}"
+    },
+    "launch_block_device_mappings": [{
+      "device_name": "/dev/sda1",
+      "volume_size": 20,
+      "volume_type": "gp2",
+      "delete_on_termination": true
+    }]
   }],
-  "provisioners": [
-    {
+  "provisioners": [{
       "type": "shell",
       "inline": [
         "sleep 30",
         "sudo yum update -y",
         "curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -",
-        "sudo yum install -y nodejs",
-        "mkdir /home/centos/node-app",
-        "chown centos:centos /home/centos/node-app"
-      ]
-    },
-    {
-      "type": "file",
-      "source": "../../ccwebapp",
-      "destination": "/tmp"
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "mv /tmp/ccwebapp /home/centos/node-app/",
-        "cd /home/centos/node-app/ccwebapp/webapp/assignment2",
-        "npm install"
+        "sudo yum install -y nodejs"
       ]
     }
+
   ]
 }
